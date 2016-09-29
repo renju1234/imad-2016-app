@@ -1,7 +1,6 @@
 body {
     font-family: sans-serif;
-    background-color: lightgrey;
-    margin-top: 75px;
+    margin-top: 60px;
 }
 
 .center {
@@ -22,13 +21,10 @@ body {
 
  .container {
        color: rgb(53, 52, 52);
-       Alignment: justify
-       disp
        height:80px;
        margin-bottom:0px;
        margin-left:97px;
        margin-right:97px;
-       margin-top:0PX;
        padding-left:30px
        padding-top:30px;
        width:750px;
