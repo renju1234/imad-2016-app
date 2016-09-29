@@ -5,7 +5,8 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-var articleone = {
+var articles = {
+ 'article-one' : {
  title:'articleone i am renju',
  heading: 'article one',
  date: '28 sept 2016',
@@ -22,7 +23,41 @@ var articleone = {
         <p>
            This is the content for the second article.This is the content for the first article.This is the content for the second article.This is the content for the first article.This is the content for the first article.This is the content for the first article.This is the content for the first article.This is the content for the first article. 
         </p>`
-  };
+  },
+ 'article-two' : { title:'articletwo',
+ heading: 'article two i am renju',
+ date: '28 sept 2016',
+ content:
+       `<p>
+             This is the content for the second article.This is the content for the second article.This is the content for the second article.This is the content for the second article.This is the content for the second article.This is the content for the second article.This is the content for the secondt article.This is the content for the second article.
+        </p>   
+        <p>
+           This is the content for the second article.This is the content for the second article.This is the content for the second article.This is the content for the second article.This is the content for the second article.This is the content for the second article.This is the content for the secondt article.This is the content for the second article.  
+        </p>   
+        <p>
+            This is the content for the second article.This is the content for the second article.This is the content for the second article.This is the content for the second article.This is the content for the second article.This is the content for the second article.This is the content for the secondt article.This is the content for the second article.
+        </p>    
+        <p>
+           This is the content for the second article.This is the content for the second article.This is the content for the second article.This is the content for the second article.This is the content for the second article.This is the content for the second article.This is the content for the secondt article.This is the content for the second article. 
+        </p>`},
+'article-three' : { title:'articlethree i am renju',
+ heading: 'article three',
+ date: '4 sept 2016',
+ content:
+       `<p>
+             This is the content for the third article.This is the content for the third article.This is the content for the third article.This is the content for the third article.This is the content for the third article.This is the content for the third article.This is the content for the third article.This is the content for the third article.
+        </p>   
+        <p>
+             This is the content for the third article.This is the content for the third article.This is the content for the third article.This is the content for the third article.This is the content for the third article.This is the content for the third article.This is the content for the third article.This is the content for the third article.
+        </p>    
+        <p>
+            This is the content for the third article.This is the content for the third article.This is the content for the third article.This is the content for the third article.This is the content for the third article.This is the content for the third article.This is the content for the third article.This is the content for the third article.
+        </p>   
+        <p>
+            This is the content for the third article.This is the content for the third article.This is the content for the third article.This is the content for the third article.This is the content for the third article.This is the content for the third article.This is the content for the third article.This is the content for the third article.
+        </p>`},
+}
+
  function createtemplate (date)(
 var title = data.title:
 var date = data.date:
@@ -34,7 +69,7 @@ var content = data.content:
        <title>
            ${title}
          </title> 
-     <link href="/ui/style.css" rel="stylesheet" />
+     <link href = "/ui/style.css" rel="stylesheet" />
   </head>
    <body>
     <div class="container">
@@ -59,20 +94,11 @@ var content = data.content:
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get("/article-one", function(req, res){
-   res.send(createTemplate(articleone));
-});
-
-app.get("/article-two", function(req, res){
-    res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
-});
-
-app.get("/article-three", function(req, res){
-   res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
-});
-
-app.get("/travancorehydrotech", function(req, res){
-   res.sendFile(path.join(__dirname, 'ui', 'travancorehydrotech.html'));
+app.get("/:articlename", function(req, res){
+    //articlename == article-one
+    //articles(articlename) == () content object for article one
+    var articlename = req.pararms.articlename;
+   res.send(createTemplate(article(articlename)));
 });
 
 app.get('/ui/style.css', function (req, res) {
